@@ -1,0 +1,61 @@
+@mixin Typography($font-family, $font-size, $font-weight, $line-height, $letter-spacing, $color) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  color: $color;
+}
+
+@mixin Heading1 {
+  @include Typography(var(--bellefair-font), 80px, 400, 100px, normal, var(--color-white));
+  text-transform: uppercase;
+}
+
+@mixin Heading2 {
+  @include Typography(var(--bellefair-font), 56px, 400, normal, initial, var(--color-white));
+  text-transform: uppercase;
+}
+
+@mixin Heading3 {
+  @include Typography(var(--bellefair-font), 24px, 400, normal, initial, var(--color-white));
+  text-transform: uppercase;
+}
+
+@mixin Heading4 {
+  @include Typography(var(--bellefair-font), 16px, 400, normal, initial, var(--color-white));
+  text-transform: uppercase;
+}
+
+@mixin Heading5 {
+  @include Typography(var(--barlow-condensed-font), 16px, 400, normal, 2.7px, var(--color-white));
+  text-transform: uppercase;
+}
+
+@mixin SubHeading1 {
+  @include Typography(var(--bellefair-font), 28px, 400, normal, initial, var(--color-white));
+  text-transform: uppercase;
+}
+
+@mixin SubHeading2 {
+  @include Typography(var(--barlow-condensed-font), 14px, 400, normal, 2.362px, var(--color-neutral));
+  text-transform: uppercase;
+}
+
+@mixin NavText {
+  @include Typography(var(--barlow-condensed-font), 14px, 400, normal, 2.362px, var(--color-neutral));
+  text-transform: uppercase;
+}
+
+@mixin Paragraph {
+  @include Typography(var(--barlow-font), 15px, 400, 25px, initial, var(--color-neutral));
+}
+
+@mixin ButtonText {
+  @include Typography(var(--bellefair-font), 20px, 400, normal, 1.25px, var(--color-primary));
+  text-transform: uppercase;
+}
+
+@mixin BulletText {
+  @include Typography(var(--bellefair-font), 16px, 400, normal, 1px, var(--color-white));
+}
