@@ -1,0 +1,21 @@
+@import "styles/typography";
+
+.title1 {
+  @include Heading1;
+}
+
+.title2 {
+  @include Heading2;
+}
+
+.title3 {
+  @include Heading3;
+}
+
+.title4 {
+  @include Heading4;
+}
+
+.title5 {
+  @include Heading5;
+}
