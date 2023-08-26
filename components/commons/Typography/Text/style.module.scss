@@ -1,0 +1,17 @@
+@import "styles/typography";
+
+.subtitle1 {
+  @include SubHeading1;
+}
+
+.subtitle2 {
+  @include SubHeading2;
+}
+
+.nav {
+  @include NavText;
+}
+
+.bullet {
+  @include BulletText;
+}
