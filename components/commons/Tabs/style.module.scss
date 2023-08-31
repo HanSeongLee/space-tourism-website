@@ -1,0 +1,112 @@
+@import "styles/typography";
+
+.tabs {
+  display: flex;
+  gap: 27px;
+  list-style: none;
+  padding-bottom: 11px;
+
+  &.dot, &.number {
+    gap: 16px;
+
+    .item::before {
+      visibility: hidden !important;
+    }
+  }
+
+  &.dot {
+
+    .item {
+      width: 10px;
+      height: 10px;
+      background-color: var(--color-white);
+      opacity: 0.1744;
+      border-radius: 50%;
+      transition: opacity 0.3s;
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    a {
+      flex: 1;
+    }
+  }
+
+  &.number {
+    counter-reset: tab;
+
+    .item {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      counter-increment: tab;
+
+      &.active {
+        background-color: var(--color-white);
+      }
+
+      &.active a::before {
+        color: var(--color-primary);
+      }
+    }
+
+    a {
+      flex: 1;
+    }
+
+    a::before {
+      @include BulletText;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: var(--color-white);
+      content: counter(tab);
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+
+  .item {
+    @include NavText;
+
+    position: relative;
+    display: flex;
+    height: calc(100% + 11px);
+    transition: color 0.3s;
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 44px;
+      height: 3px;
+      background-color: var(--color-white);
+      content: "";
+      transform: translateX(-50%);
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    &:hover::before {
+      opacity: 0.5;
+      visibility: visible;
+    }
+
+    &.active {
+      color: var(--color-white);
+
+      &::before {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}
