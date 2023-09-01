@@ -59,7 +59,8 @@ const Menu: React.FC<IProps> = ({ items, className, ...props }) => {
                     ))}
                 </ol>
             </div>
-            <Button variant={'icon'}
+            <Button className={styles.menuButton}
+                    variant={'icon'}
                     icon={'hamburger'}
                     alt={'Menu'}
                     onClick={onMenuButtonClick}
