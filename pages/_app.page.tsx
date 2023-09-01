@@ -9,7 +9,7 @@ const bellefair = Bellefair({
 );
 
 const BarlowCondensed = Barlow_Condensed({
-      weight: ['400', '500'],
+      weight: ['400', '700'],
       subsets: ['latin'],
     },
 );
