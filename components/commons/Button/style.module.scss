@@ -15,6 +15,11 @@
     background-color: var(--color-white);
     border-radius: 50%;
 
+    @include media(">tablet") {
+      width: 242px;
+      height: 242px;
+    }
+
     @include media(">desktop") {
       position: relative;
       width: 274px;
