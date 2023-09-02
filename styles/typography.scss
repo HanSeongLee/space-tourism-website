@@ -1,3 +1,5 @@
+@import "styles/utils";
+
 @mixin Typography($font-family, $font-size, $font-weight, $line-height, $letter-spacing, $color) {
   font-family: $font-family;
   font-size: $font-size;
@@ -10,26 +12,46 @@
 @mixin Heading1 {
   @include Typography(var(--bellefair-font), 80px, 400, 100px, normal, var(--color-white));
   text-transform: uppercase;
+
+  @include media(">tablet") {
+    @include Typography(var(--bellefair-font), 150px, 400, 150px, normal, var(--color-white));
+  }
 }
 
 @mixin Heading2 {
   @include Typography(var(--bellefair-font), 56px, 400, normal, initial, var(--color-white));
   text-transform: uppercase;
+
+  @include media(">tablet") {
+    font-size: 80px;
+  }
 }
 
 @mixin Heading3 {
   @include Typography(var(--bellefair-font), 24px, 400, normal, initial, var(--color-white));
   text-transform: uppercase;
+
+  @include media(">tablet") {
+    font-size: 40px;
+  }
 }
 
 @mixin Heading4 {
   @include Typography(var(--bellefair-font), 16px, 400, normal, initial, var(--color-white));
   text-transform: uppercase;
+
+  @include media(">tablet") {
+    font-size: 24px;
+  }
 }
 
 @mixin Heading5 {
   @include Typography(var(--barlow-condensed-font), 16px, 400, normal, 2.7px, var(--color-white));
   text-transform: uppercase;
+
+  @include media(">tablet") {
+    @include Typography(var(--barlow-condensed-font), 20px, 400, normal, 3.37px, var(--color-white));
+  }
 }
 
 @mixin SubHeading1 {
@@ -45,17 +67,36 @@
 @mixin NavText {
   @include Typography(var(--barlow-condensed-font), 14px, 400, normal, 2.362px, var(--color-neutral));
   text-transform: uppercase;
+
+  @include media(">tablet") {
+    font-size: 16px;
+    letter-spacing: 2.7px;
+  }
 }
 
 @mixin Paragraph {
   @include Typography(var(--barlow-font), 15px, 400, 25px, initial, var(--color-neutral));
+
+  @include media(">tablet") {
+    font-size: 16px;
+    line-height: 28px;
+  }
 }
 
 @mixin ButtonText {
   @include Typography(var(--bellefair-font), 20px, 400, normal, 1.25px, var(--color-primary));
   text-transform: uppercase;
+
+  @include media(">tablet") {
+    @include Typography(var(--bellefair-font), 32px, 400, normal, 2px, var(--color-primary));
+  }
 }
 
 @mixin BulletText {
   @include Typography(var(--bellefair-font), 16px, 400, normal, 1px, var(--color-white));
+
+  @include media(">tablet") {
+    font-size: 24px;
+    letter-spacing: 1.5px;
+  }
 }
