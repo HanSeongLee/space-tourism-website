@@ -1,3 +1,4 @@
+@import "styles/utils";
 @import "styles/typography";
 
 .tabs {
@@ -48,6 +49,11 @@
       border-radius: 50%;
       counter-increment: tab;
 
+      @include media(">tablet") {
+        width: 60px;
+        height: 60px;
+      }
+
       &.active {
         background-color: var(--color-white);
       }
@@ -93,6 +99,10 @@
       visibility: hidden;
       opacity: 0;
       transition: opacity 0.3s;
+
+      @include media(">tablet") {
+        width: 100%;
+      }
     }
 
     &:hover::before {
