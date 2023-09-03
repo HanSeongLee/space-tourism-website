@@ -8,4 +8,8 @@
   @include media(">tablet") {
     max-width: 683px;
   }
+
+  @include media(">desktop") {
+    max-width: 1110px;
+  }
 }
