@@ -17,6 +17,10 @@
 
   &.dot {
 
+    @include media(">desktop") {
+      gap: 24px;
+    }
+
     .item {
       width: 10px;
       height: 10px;
@@ -24,6 +28,11 @@
       opacity: 0.1744;
       border-radius: 50%;
       transition: opacity 0.3s;
+
+      @include media(">desktop") {
+        width: 15px;
+        height: 15px;
+      }
 
       &:hover {
         opacity: 0.5;
@@ -52,6 +61,11 @@
       @include media(">tablet") {
         width: 60px;
         height: 60px;
+      }
+
+      @include media(">desktop") {
+        width: 80px;
+        height: 80px;
       }
 
       &.active {
