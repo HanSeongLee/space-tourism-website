@@ -29,3 +29,10 @@ hr {
   padding: 0;
   margin: 0;
 }
+
+.prevent-animation {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
