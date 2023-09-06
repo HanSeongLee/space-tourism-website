@@ -16,6 +16,10 @@
   @include media(">tablet") {
     @include Typography(var(--bellefair-font), 150px, 400, 150px, normal, var(--color-white));
   }
+
+  @include media(">desktop") {
+    line-height: normal;
+  }
 }
 
 @mixin Heading2 {
@@ -24,6 +28,10 @@
 
   @include media(">tablet") {
     font-size: 80px;
+  }
+
+  @include media(">desktop") {
+    font-size: 100px;
   }
 }
 
@@ -34,6 +42,10 @@
   @include media(">tablet") {
     font-size: 40px;
   }
+
+  @include media(">desktop") {
+    font-size: 56px;
+  }
 }
 
 @mixin Heading4 {
@@ -43,6 +55,10 @@
   @include media(">tablet") {
     font-size: 24px;
   }
+
+  @include media(">desktop") {
+    font-size: 32px;
+  }
 }
 
 @mixin Heading5 {
@@ -51,6 +67,11 @@
 
   @include media(">tablet") {
     @include Typography(var(--barlow-condensed-font), 20px, 400, normal, 3.37px, var(--color-white));
+  }
+
+  @include media(">desktop") {
+    font-size: 28px;
+    letter-spacing: 4.725px;
   }
 }
 
@@ -81,6 +102,11 @@
     font-size: 16px;
     line-height: 28px;
   }
+
+  @include media(">desktop") {
+    font-size: 18px;
+    line-height: 32px;
+  }
 }
 
 @mixin ButtonText {
@@ -98,5 +124,10 @@
   @include media(">tablet") {
     font-size: 24px;
     letter-spacing: 1.5px;
+  }
+
+  @include media(">desktop") {
+    font-size: 32px;
+    letter-spacing: 2px;
   }
 }
