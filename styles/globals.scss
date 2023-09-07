@@ -8,6 +8,7 @@ body {
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: var(--color-white);
   background-color: var(--color-primary);
+  overflow-x: clip;
 }
 
 a {
