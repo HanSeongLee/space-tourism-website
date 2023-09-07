@@ -1,0 +1,98 @@
+@import "styles/utils";
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 667px;
+  height: 100vh;
+  background: url("/img/home/background-home-mobile.jpg") no-repeat center bottom;
+  background-size: cover;
+
+  @include media(">tablet") {
+    min-height: 968px;
+    background: url("/img/home/background-home-tablet.jpg") no-repeat center bottom;
+    background-size: cover;
+  }
+
+  @include media(">desktop") {
+    min-height: 900px;
+    background: url("/img/home/background-home-desktop.jpg") no-repeat center bottom;
+    background-size: cover;
+  }
+
+  .main {
+    flex: 1;
+    display: flex;
+  }
+
+  .heroSection {
+    display: flex;
+    flex: 1;
+  }
+
+  .main {
+    padding-top: 24px;
+
+    @include media(">tablet") {
+      padding-top: 106px;
+    }
+  }
+
+  .container, .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+
+    @include media(">tablet") {
+      gap: 24px;
+    }
+  }
+
+  .container {
+
+    @include media(">desktop") {
+      flex-direction: row;
+      align-items: flex-end;
+      padding-bottom: 131px;
+    }
+  }
+
+  .content {
+    @include media(">desktop") {
+      align-items: flex-start;
+    }
+  }
+
+  .subtitle {
+    color: var(--color-neutral);
+  }
+
+  .description {
+
+    @include media(">tablet") {
+      max-width: 440px;
+    }
+
+    @include media(">desktop") {
+      text-align: left;
+    }
+  }
+
+  .buttonContainer {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    padding-top: 65px;
+    padding-bottom: 48px;
+
+    @include media(">desktop") {
+      flex: initial;
+      justify-content: flex-end;
+      padding: 0;
+    }
+  }
+}
