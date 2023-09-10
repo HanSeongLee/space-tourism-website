@@ -7,11 +7,12 @@ interface IProps extends HTMLAttributes<HTMLUListElement>{
     type?: 'default' | 'dot' | 'number';
     items: ITabsItem[];
     activeTabIndex: number;
+    onClickItem?: () => void;
 }
 
 const Tabs: React.FC<IProps> = ({
-                                    type = 'default', items, activeTabIndex, className,
-                                    ...props
+                                    type = 'default', items, activeTabIndex, onClickItem,
+                                    className, ...props
                                 }) => {
     return (
         <ul className={cn(styles.tabs, {
@@ -28,6 +29,7 @@ const Tabs: React.FC<IProps> = ({
                     [styles.active]: activeTabIndex === index,
                 })}
                     key={index}
+                    onClick={onClickItem}
                 >
                     <Link href={item.href}>
                         {type === 'default' && item.label}
