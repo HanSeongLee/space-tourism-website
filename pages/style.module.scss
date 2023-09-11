@@ -8,6 +8,7 @@
   height: 100vh;
   background: url("/img/home/background-home-mobile.jpg") no-repeat center bottom;
   background-size: cover;
+  overflow: hidden;
 
   @include media(">tablet") {
     min-height: 968px;
@@ -19,6 +20,15 @@
     min-height: 900px;
     background: url("/img/home/background-home-desktop.jpg") no-repeat center bottom;
     background-size: cover;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-primary);
   }
 
   .main {
