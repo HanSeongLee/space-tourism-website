@@ -5,7 +5,7 @@ import Header from 'components/commons/Header';
 import Container from 'components/commons/Container';
 import data from 'data/data.json';
 import Tabs from 'components/commons/Tabs';
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { createMatchMedia } from 'libs/breakpoints';
 
@@ -26,60 +26,53 @@ const CrewPage = ({ crewNames, crew }: InferGetStaticPropsType<typeof getStaticP
     useLayoutEffect(() => {
         const ctx = createMatchMedia((context) => {
             const { isMobile, isDesktop } = context.conditions as { isMobile: boolean, isDesktop: boolean };
-            const timeline = gsap.timeline();
 
-            timeline.
-                delay(0.1)
-                .fromTo('#overlay', {
-                    opacity: 0.8,
-                }, {
-                    opacity: 0,
+            gsap.set('#overlay', {
+                autoAlpha: 0.8,
+            });
+
+            gsap.set(['#subtitle', '#imageWrapper', '#textContainer', '#tabs'], {
+                autoAlpha: 0,
+            });
+
+            gsap.timeline()
+                .delay(0.1)
+                .to('#overlay', {
+                    autoAlpha: 0,
                 })
                 .fromTo('#subtitle', {
                     y: -30,
-                    opacity: 0,
                 }, {
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 })
                 .add("start")
                 .fromTo('#imageWrapper', {
                     x: isDesktop ? 30 : 0,
                     y: !isDesktop ? (isMobile ? -30 : 30) : 0,
-                    opacity: 0,
                 }, {
                     x: 0,
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, `${!isMobile ? 'last' : 'start'}`)
                 .fromTo('#textContainer', {
                     x: isDesktop ? -30 : 0,
                     y: !isDesktop ? -30 : 0,
-                    opacity: 0,
                 }, {
                     x: 0,
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, `${!isMobile ? 'last-=0.5' : 'start+=0.5'}`)
                 .fromTo('#tabs', {
                     x: isDesktop ? -30 : 0,
                     y: !isDesktop ? -30 : 0,
-                    opacity: 0,
                 }, {
                     x: 0,
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, `${!isMobile ? 'last-=0.5' : 'start+=0.5'}`)
                 .add("last")
             ;
-        }, [root]);
-
-        return () => ctx.revert();
-    }, []);
-
-    useEffect(() => {
-        const ctx = createMatchMedia((context) => {
-            const { isMobile, isDesktop } = context.conditions as { isMobile: boolean, isDesktop: boolean };
 
             tabTimeline.current = gsap.timeline({
                 paused: true,
@@ -88,34 +81,34 @@ const CrewPage = ({ crewNames, crew }: InferGetStaticPropsType<typeof getStaticP
                 .fromTo('#imageWrapper', {
                     x: isDesktop ? 30 : 0,
                     y: !isDesktop ? 30 : 0,
-                    opacity: 0,
                 }, {
                     x: 0,
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, `${!isMobile ? 'start+=0.5' : ''}`)
                 .fromTo('#textContainer', {
                     x: isDesktop ? -30 : 0,
                     y: !isDesktop ? -30 : 0,
-                    opacity: 0,
                 }, {
                     x: 0,
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, `${!isMobile ? '' : 'start'}`)
             ;
+
         }, [root]);
 
         return () => {
-            if (!tabTimeline.current) return;
-            tabTimeline.current.kill();
+            tabTimeline.current?.kill();
             ctx.revert();
-        };
+        }
     }, []);
 
     const onClickTabItem = () => {
-        if (!tabTimeline.current) return;
-        tabTimeline.current.restart();
+        gsap.set(['#imageWrapper', '#textContainer'], {
+            autoAlpha: 0,
+        });
+        tabTimeline.current?.restart();
     };
 
     return (

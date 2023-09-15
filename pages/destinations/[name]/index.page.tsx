@@ -28,30 +28,33 @@ const DestinationPage = ({ destinationNames, destination }: InferGetStaticPropsT
     useLayoutEffect(() => {
         const ctx = createMatchMedia((context) => {
             const { isMobile, isDesktop } = context.conditions as { isMobile: boolean, isDesktop: boolean };
-            const timeline = gsap.timeline();
 
-            timeline
+            gsap.set('#overlay', {
+                autoAlpha: 0.8,
+            });
+
+            gsap.set(['#subtitle', '#imageWrapper', '#tabs', '#textContainer'], {
+                autoAlpha: 0,
+            });
+
+            gsap.timeline()
                 .delay(0.1)
-                .fromTo('#overlay', {
-                    opacity: 0.8,
-                }, {
-                    opacity: 0,
+                .to('#overlay', {
+                    autoAlpha: 0,
                 })
                 .fromTo('#subtitle', {
                     y: -30,
-                    opacity: 0,
                 }, {
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 })
                 .fromTo('#imageWrapper', {
                     x: !isMobile ? -1000 : -500,
                     scale: 0.3,
-                    opacity: 0,
                 }, {
                     x: 0,
                     scale: 1,
-                    opacity: 1,
+                    autoAlpha: 1,
                     duration: 2,
                 })
                 .fromTo('#shadow', {
@@ -65,30 +68,20 @@ const DestinationPage = ({ destinationNames, destination }: InferGetStaticPropsT
                 .fromTo('#tabs', {
                     x: isDesktop ? 30 : 0,
                     y: !isDesktop ? -30 : 0,
-                    opacity: 0,
                 }, {
                     x: 0,
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, '-=2')
                 .fromTo('#textContainer', {
                     x: isDesktop ? 30 : 0,
                     y: !isDesktop ? -30 : 0,
-                    opacity: 0,
                 }, {
                     x: 0,
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, '-=2')
             ;
-        }, [root]);
-
-        return () => ctx.revert();
-    }, []);
-
-    useEffect(() => {
-        const ctx = createMatchMedia((context) => {
-            const { isMobile, isDesktop } = context.conditions as { isMobile: boolean, isDesktop: boolean };
 
             tabTimeline.current = gsap.timeline({
                 paused: true,
@@ -96,11 +89,10 @@ const DestinationPage = ({ destinationNames, destination }: InferGetStaticPropsT
                 .fromTo('#imageWrapper', {
                     x: !isMobile ? -1000 : -500,
                     scale: 0.3,
-                    opacity: 0,
                 }, {
                     x: 0,
                     scale: 1,
-                    opacity: 1,
+                    autoAlpha: 1,
                     duration: 2,
                 })
                 .fromTo('#shadow', {
@@ -114,23 +106,24 @@ const DestinationPage = ({ destinationNames, destination }: InferGetStaticPropsT
                 .fromTo('#textContainer', {
                     x: isDesktop ? 30 : 0,
                     y: !isDesktop ? -30 : 0,
-                    opacity: 0,
                 }, {
                     x: 0,
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, '-=1.5')
             ;
         }, [root]);
 
         return () => {
-            if (!tabTimeline.current) return;
-            tabTimeline.current.kill();
+            tabTimeline.current?.kill();
             ctx.revert();
         }
     }, []);
 
     const onClickTabItem = () => {
+        gsap.set(['#imageWrapper', '#textContainer'], {
+            autoAlpha: 0,
+        });
         tabTimeline.current?.restart();
     };
 

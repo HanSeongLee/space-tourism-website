@@ -6,7 +6,7 @@ import Container from 'components/commons/Container';
 import Text from 'components/commons/Typography/Text';
 import data from 'data/data.json';
 import Tabs from 'components/commons/Tabs';
-import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 interface ITechnology {
@@ -24,78 +24,74 @@ const TechnologyPage = ({ technologyNames, technology }: InferGetStaticPropsType
 
     useLayoutEffect(() => {
         const context = gsap.context(() => {
-            const timeline = gsap.timeline();
+            gsap.set('#overlay', {
+                autoAlpha: 0.8,
+            });
 
-            timeline
+            gsap.set(['#subtitle', '#image', '#tabs', '#textContainer'], {
+                autoAlpha: 0,
+            });
+
+            gsap.timeline()
                 .delay(0.1)
-                .fromTo('#overlay', {
-                    opacity: 0.8,
-                }, {
-                    opacity: 0,
+                .to('#overlay', {
+                    autoAlpha: 0,
                 })
                 .fromTo('#subtitle', {
                     y: -30,
-                    opacity: 0,
                 }, {
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 })
                 .fromTo('#image', {
                     x: 30,
-                    opacity: 0,
                 }, {
                     x: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 })
                 .fromTo('#tabs', {
                     x: -30,
-                    opacity: 0,
                 }, {
                     x: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 })
                 .fromTo('#textContainer', {
                     x: -30,
-                    opacity: 0,
                 }, {
                     x: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, '-=0.5')
+            ;
+
+            tabTimeline.current = gsap.timeline({
+                paused: true,
+            })
+                .fromTo('#image', {
+                    x: 30,
+                }, {
+                    x: 0,
+                    autoAlpha: 1,
+                })
+                .fromTo('#textContainer', {
+                    x: -30,
+                }, {
+                    x: 0,
+                    autoAlpha: 1,
+                })
             ;
         }, [root]);
 
-        return () => context.revert();
-    }, []);
-
-    useEffect(() => {
-        tabTimeline.current = gsap.timeline({
-            paused: true,
-        })
-            .fromTo('#image', {
-                x: 30,
-                opacity: 0,
-            }, {
-                x: 0,
-                opacity: 1,
-            })
-            .fromTo('#textContainer', {
-                x: -30,
-                opacity: 0,
-            }, {
-                x: 0,
-                opacity: 1,
-            })
-        ;
-
         return () => {
-            if (!tabTimeline.current) return;
-            tabTimeline.current.kill();
+            tabTimeline.current?.kill();
+            context.revert();
         }
     }, []);
 
     const onClickTabItem = () => {
-        if (!tabTimeline.current) return;
-        tabTimeline.current.restart();
+        gsap.set(['#image', '#textContainer'], {
+            autoAlpha: 0,
+        });
+        tabTimeline.current?.restart();
     };
 
     return (

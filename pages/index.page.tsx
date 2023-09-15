@@ -7,48 +7,49 @@ import Button from 'components/commons/Button';
 import Link from 'next/link';
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { createMatchMedia } from 'libs/breakpoints';
 
 const Home: NextPage = () => {
     const root = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            const timeline = gsap.timeline();
+        const ctx = createMatchMedia(() => {
+            gsap.set('#overlay', {
+                autoAlpha: 0.8,
+            });
 
-            timeline
+            gsap.set(['#subtitle', '#title', '#description', '#buttonContainer'], {
+                autoAlpha: 0,
+            });
+
+            gsap.timeline()
                 .delay(0.1)
-                .fromTo('#overlay', {
-                    opacity: 0.8,
-                }, {
-                    opacity: 0,
+                .to('#overlay', {
+                    autoAlpha: 0,
                 })
                 .fromTo('#subtitle', {
                     y: -30,
-                    opacity: 0,
                 }, {
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, '+=0')
                 .fromTo('#title', {
                     y: -30,
-                    opacity: 0,
                 }, {
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, '+=0')
                 .fromTo('#description', {
                     y: -30,
-                    opacity: 0,
                 }, {
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, '+=0')
                 .fromTo('#buttonContainer', {
                     y: 30,
-                    opacity: 0,
                 }, {
                     y: 0,
-                    opacity: 1,
+                    autoAlpha: 1,
                 }, '+=0');
         }, root);
 
