@@ -98,6 +98,7 @@
     align-items: flex-end;
     padding-top: 65px;
     padding-bottom: 48px;
+    opacity: 0;
 
     @include media(">desktop") {
       flex: initial;

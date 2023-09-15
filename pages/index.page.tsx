@@ -23,32 +23,32 @@ const Home: NextPage = () => {
                     opacity: 0,
                 })
                 .fromTo('#subtitle', {
+                    y: -30,
                     opacity: 0,
-                    transform: 'translateY(-30px)',
                 }, {
+                    y: 0,
                     opacity: 1,
-                    transform: 'translateY(0)',
                 }, '+=0')
                 .fromTo('#title', {
+                    y: -30,
                     opacity: 0,
-                    transform: 'translateY(-30px)',
                 }, {
+                    y: 0,
                     opacity: 1,
-                    transform: 'translateY(0)',
                 }, '+=0')
                 .fromTo('#description', {
+                    y: -30,
                     opacity: 0,
-                    transform: 'translateY(-30px)',
                 }, {
+                    y: 0,
                     opacity: 1,
-                    transform: 'translateY(0)',
                 }, '+=0')
-                .fromTo('#button', {
+                .fromTo('#buttonContainer', {
+                    y: 30,
                     opacity: 0,
-                    transform: 'translateY(30px)',
                 }, {
+                    y: 0,
                     opacity: 1,
-                    transform: 'translateY(0)',
                 }, '+=0');
         }, root);
 
@@ -89,10 +89,10 @@ const Home: NextPage = () => {
                             </Paragraph>
                         </div>
 
-                        <div className={styles.buttonContainer}>
-                            <Link href={'/destinations'}
-                                  id={'button'}
-                            >
+                        <div className={styles.buttonContainer}
+                             id={'buttonContainer'}
+                        >
+                            <Link href={'/destinations'}>
                                 <Button>
                                     Explore
                                 </Button>
