@@ -1,4 +1,5 @@
 const { withSentryConfig } = require('@sentry/nextjs')
+const data = require("./data/data.json");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,6 +8,29 @@ const nextConfig = {
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
+  },
+  async redirects() {
+    const destination = data.destinations[0];
+    const crew = data.crew[0];
+    const technology = data.technology[0];
+
+    return [
+      {
+        source: '/destinations',
+        destination: `/destinations/${destination.name.toLowerCase().replace(' ', '-')}`,
+        permanent: false,
+      },
+      {
+        source: '/crews',
+        destination: `/crews/${crew.name.toLowerCase().replace(' ', '-')}`,
+        permanent: false,
+      },
+      {
+        source: '/technologies',
+        destination: `/technologies/${technology.name.toLowerCase().replace(' ', '-')}`,
+        permanent: false,
+      },
+    ];
   },
   webpack(config) {
     config.module.rules.push({
