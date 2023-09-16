@@ -114,6 +114,10 @@
       padding: 0;
     }
 
+    &:first-of-type::before {
+      counter-set: menu 0;
+    }
+
     &::before {
       @include Heading5;
 
@@ -124,6 +128,15 @@
 
       @include media(">tablet") {
         display: none;
+      }
+
+      @include media(">desktop") {
+        @include NavText;
+
+        display: inline;
+        font-weight: 700;
+        color: var(--color-white);
+        margin-right: 12px;
       }
     }
 
