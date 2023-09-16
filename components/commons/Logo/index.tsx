@@ -13,10 +13,12 @@ const Logo: React.FC<IProps> = ({ className, ...props }) => {
               href={'/'}
               {...props}
         >
-            <img className={styles.image}
-                 src={'/logo.svg'}
-                 alt={'Space'}
-            />
+            <h1>
+                <img className={styles.image}
+                     src={'/logo.svg'}
+                     alt={'Space'}
+                />
+            </h1>
         </Link>
     );
 };
