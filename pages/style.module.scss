@@ -8,7 +8,6 @@
   height: 100vh;
   background: url("/img/home/background-home-mobile.jpg") no-repeat center bottom;
   background-size: cover;
-  overflow: hidden;
 
   @include media(">tablet") {
     min-height: 968px;

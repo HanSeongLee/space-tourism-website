@@ -50,6 +50,7 @@
     gap: 60px;
     width: 254px;
     height: 100vh;
+    min-height: 667px;
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(41px);
     transform: translateX(100%);
@@ -60,6 +61,7 @@
       position: relative;
       width: initial;
       height: 96px;
+      min-height: initial;
       transform: initial;
       padding: 0 46px 0 48px;
       visibility: visible;

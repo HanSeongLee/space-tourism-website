@@ -60,10 +60,10 @@ const Home: NextPage = () => {
         <div className={styles.layout}
              ref={root}
         >
-            <Header />
             <div className={styles.overlay}
                  id={'overlay'}
             ></div>
+            <Header />
             <main className={styles.main}>
                 <section className={styles.heroSection}>
                     <Container className={styles.container}>
