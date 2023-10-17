@@ -21,6 +21,8 @@ interface ITechnology {
 const TechnologyPage = ({ technologyNames, technology }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const root = React.useRef<HTMLDivElement>(null);
     const tabTimeline = useRef<gsap.core.Timeline>();
+    const [initialLoad, setInitialLoad] = React.useState(true);
+    const [imageLoaded, setImageLoaded] = React.useState(false);
 
     useLayoutEffect(() => {
         const context = gsap.context(() => {
@@ -81,17 +83,31 @@ const TechnologyPage = ({ technologyNames, technology }: InferGetStaticPropsType
             ;
         }, [root]);
 
+        setInitialLoad(false);
+
         return () => {
             tabTimeline.current?.kill();
             context.revert();
         }
     }, []);
 
+    useLayoutEffect(() => {
+        if (initialLoad || !imageLoaded) {
+            return ;
+        }
+
+        tabTimeline.current?.restart();
+    }, [initialLoad, imageLoaded]);
+
     const onClickTabItem = () => {
+        setImageLoaded(false);
         gsap.set(['#image', '#textContainer'], {
             autoAlpha: 0,
         });
-        tabTimeline.current?.restart();
+    };
+
+    const onLoadImage = () => {
+        setImageLoaded(true);
     };
 
     return (
@@ -128,6 +144,7 @@ const TechnologyPage = ({ technologyNames, technology }: InferGetStaticPropsType
                                  src={technology.images.landscape}
                                  alt={''}
                                  id={'image'}
+                                 onLoad={onLoadImage}
                             />
                         </picture>
                         <Container className={styles.container}>

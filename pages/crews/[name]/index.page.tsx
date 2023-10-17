@@ -5,7 +5,7 @@ import Header from 'components/commons/Header';
 import Container from 'components/commons/Container';
 import data from 'data/data.json';
 import Tabs from 'components/commons/Tabs';
-import { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { createMatchMedia } from 'libs/breakpoints';
 
@@ -22,6 +22,8 @@ interface ICrew {
 const CrewPage = ({ crewNames, crew }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const root = useRef<HTMLDivElement>(null);
     const tabTimeline = useRef<gsap.core.Timeline>();
+    const [initialLoad, setInitialLoad] = React.useState(true);
+    const [imageLoaded, setImageLoaded] = React.useState(false);
 
     useLayoutEffect(() => {
         const ctx = createMatchMedia((context) => {
@@ -98,17 +100,31 @@ const CrewPage = ({ crewNames, crew }: InferGetStaticPropsType<typeof getStaticP
 
         }, [root]);
 
+        setInitialLoad(false);
+
         return () => {
             tabTimeline.current?.kill();
             ctx.revert();
         }
     }, []);
 
+    useLayoutEffect(() => {
+        if (initialLoad || !imageLoaded) {
+            return;
+        }
+
+        tabTimeline.current?.restart();
+    }, [initialLoad, imageLoaded]);
+
     const onClickTabItem = () => {
+        setImageLoaded(false);
         gsap.set(['#imageWrapper', '#textContainer'], {
             autoAlpha: 0,
         });
-        tabTimeline.current?.restart();
+    };
+
+    const onImageLoad = () => {
+        setImageLoaded(true);
     };
 
     return (
@@ -142,6 +158,7 @@ const CrewPage = ({ crewNames, crew }: InferGetStaticPropsType<typeof getStaticP
                                 <img className={styles.image}
                                      src={crew.images.webp}
                                      alt={''}
+                                     onLoad={onImageLoad}
                                 />
                             </div>
 
