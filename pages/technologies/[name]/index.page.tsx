@@ -8,6 +8,7 @@ import data from 'data/data.json';
 import Tabs from 'components/commons/Tabs';
 import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
+import cn from 'classnames';
 
 interface ITechnology {
     name: string;
@@ -111,7 +112,9 @@ const TechnologyPage = ({ technologyNames, technology }: InferGetStaticPropsType
     };
 
     return (
-        <div className={styles.layout}
+        <div className={cn(styles.layout, {
+            [styles.load]: !initialLoad,
+        })}
              ref={root}
         >
             <div className={styles.overlay}

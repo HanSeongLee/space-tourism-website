@@ -8,6 +8,7 @@
   height: 100vh;
   background: url("/img/technology/background-technology-mobile.jpg") no-repeat center bottom;
   background-size: cover;
+  visibility: hidden;
 
   @include media(">tablet") {
     background: url("/img/technology/background-technology-tablet.jpg") no-repeat center bottom;
@@ -17,6 +18,10 @@
   @include media(">desktop") {
     background: url("/img/technology/background-technology-desktop.jpg") no-repeat center bottom;
     background-size: cover;
+  }
+
+  &.load {
+    visibility: visible;
   }
 
   .overlay {

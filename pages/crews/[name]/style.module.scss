@@ -8,6 +8,7 @@
   height: 100vh;
   background: url("/img/crew/background-crew-mobile.jpg") no-repeat center bottom;
   background-size: cover;
+  visibility: hidden;
 
   @include media(">tablet") {
     min-height: 1024px;
@@ -20,6 +21,10 @@
     max-height: 900px;
     background: url("/img/crew/background-crew-desktop.jpg") no-repeat center bottom;
     background-size: cover;
+  }
+
+  &.load {
+    visibility: visible;
   }
 
   .overlay {

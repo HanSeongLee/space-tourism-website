@@ -8,6 +8,7 @@ import Tabs from 'components/commons/Tabs';
 import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { createMatchMedia } from 'libs/breakpoints';
+import cn from 'classnames';
 
 interface ICrew {
     name: string;
@@ -128,7 +129,9 @@ const CrewPage = ({ crewNames, crew }: InferGetStaticPropsType<typeof getStaticP
     };
 
     return (
-        <div className={styles.layout}
+        <div className={cn(styles.layout, {
+            [styles.load]: !initialLoad,
+        })}
              ref={root}
         >
             <div className={styles.overlay}

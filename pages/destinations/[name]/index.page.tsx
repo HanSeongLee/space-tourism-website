@@ -9,6 +9,7 @@ import Tabs from 'components/commons/Tabs';
 import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { createMatchMedia } from 'libs/breakpoints';
+import cn from 'classnames';
 
 interface IDestination {
     name: string;
@@ -144,7 +145,9 @@ const DestinationPage = ({ destinationNames, destination }: InferGetStaticPropsT
     };
 
     return (
-        <div className={styles.home}
+        <div className={cn(styles.home, {
+            [styles.load]: !initialLoad,
+        })}
              ref={root}
         >
             <div className={styles.overlay}

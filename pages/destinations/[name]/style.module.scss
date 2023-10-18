@@ -8,6 +8,7 @@
   background: url("/img/destination/background-destination-mobile.jpg") no-repeat center top;
   background-size: cover;
   padding-bottom: 58px;
+  visibility: hidden;
 
   @include media(">tablet") {
     min-height: 968px;
@@ -21,6 +22,10 @@
     background: url("/img/destination/background-destination-desktop.jpg") no-repeat center bottom;
     background-size: cover;
     padding-bottom: 112px;
+  }
+
+  &.load {
+    visibility: visible;
   }
 
   .overlay {
